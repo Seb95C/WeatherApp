@@ -1,0 +1,23 @@
+{
+  "name": "weatherapp",
+  "version": "1.0.0",
+  "description": "A simple web application that lets you get information about the weather at a desired location",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Seb95C/WeatherApp.git"
+  },
+  "keywords": [],
+  "author": "Sebastian Calcan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Seb95C/WeatherApp/issues"
+  },
+  "homepage": "https://github.com/Seb95C/WeatherApp#readme",
+  "dependencies": {
+    "postman-request": "^2.88.1-postman.31"
+  }
+}
