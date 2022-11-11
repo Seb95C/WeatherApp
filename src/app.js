@@ -1,7 +1,13 @@
 const geocode = require('./utils/geocode')
 const weather = require('./utils/weather')
 
-geocode('Dubai', (error, data) => {
+const location = process.argv[2]
+
+if (!location) {
+    return console.log('Please add a location when running the application via command line arguments.\nExample: node src/app.js London')
+}
+
+geocode(location, (error, data) => {
     if (error) { 
         return console.log('Error', error)
     }
