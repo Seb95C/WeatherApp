@@ -5,13 +5,15 @@ const fs = require('fs')
 // Create account and get an API key at weatherstack.com. Create weatherstack.txt file in main folder and paste your key 
 const key = fs.readFileSync('weatherstack.txt').toString()
 
-const weather = (coordinates, callback) => {
+// Destructure latitude and longitude data from the input object
+const weather = ({ latitude, longitude }, callback) => {
 
     // Generate the URL to be used for the API call
-    const url = `http://api.weatherstack.com/current?access_key=${key}&query=${coordinates.latitude},${coordinates.longitude}`
+    const url = `http://api.weatherstack.com/current?access_key=${key}&query=${latitude},${longitude}`
 
     // Make the API call to weatherstack.com
-    request({ url: url, json: true }, (error, response) => {
+    // Destructure response object to access just the body object
+    request({ url, json: true }, (error, { body }) => {
 
         // Check for low level errors
         if (error) {
@@ -20,14 +22,14 @@ const weather = (coordinates, callback) => {
             callback('Unable to connect to weatherstack.com API', undefined)
 
         // Chack for server errors
-        } else if (response.body.error) {
+        } else if (body.error) {
 
             // Pass in error
             callback('Wrong input for weatherstack.com API', undefined)
         } else {
 
             // Pass in a respunse string to the callback function
-            callback(undefined, `${response.body.current.weather_descriptions}. It is currently ${response.body.current.temperature} degrees out. It feels like ${response.body.current.feelslike} degrees`)
+            callback(undefined, `${body.current.weather_descriptions}. It is currently ${body.current.temperature} degrees out. It feels like ${body.current.feelslike} degrees`)
         }
     })
 }
