@@ -2,7 +2,7 @@
 const path = require('node:path')
 
 // NPM modules
-//const hbs = require('hbs')
+const hbs = require('hbs')
 
 // App modules
 const geocode = require('./utils/geocode')
@@ -11,6 +11,7 @@ const weather = require('./utils/weather')
 // Path management
 const staticDirPath = path.join(__dirname, '../static')
 const viewsPath = path.join(__dirname, '../templates/views')
+const partialsPath = path.join(__dirname, '../templates/partials')
 
 // Setting up Express server
 const express = require ('express')
@@ -23,6 +24,7 @@ app.use(express.static(staticDirPath))
 // Configure HBS View Engine
 app.set('view engine', 'hbs')
 app.set('views', viewsPath)
+hbs.registerPartials(partialsPath)
 
 
 // Route Handelers 
