@@ -53,10 +53,26 @@ app.get('/weather', (req, res) => {
         })
     }
 
-    res.send({
-        forecast: `All is fine in ${req.query.adress}`,
-        location: req.query.adress,
-        adress: req.query.adress
+    geocode(req.query.adress, (error, data) => {
+        if (error) { 
+            return res.send(error)
+        }
+        
+        // Call weather function with data (containing latitude, longitude)
+        // Label property is not used by weather. Kept like this for clarity of code
+        // weather() will destructure data to only use latitude and longitude
+        weather(data, (error, forecast) => {
+            if (error) { 
+                return res.send(error)
+            }
+            
+            // Send response object containing all the important information
+            res.send({
+                adress: req.query.adress,
+                location: data.label,
+                forecast
+            })
+        })
     })
 })
 
@@ -71,25 +87,3 @@ app.get('*', (req, res) => {
 app.listen(port, () => {
     console.log(`Server is up on port ${port}`)
 })
-
-// Code is deactivated temporarely for the purpose of developing the Express server
-// geocode(location, (error, data) => {
-//     if (error) { 
-//         return console.log('Error', error)
-//     }
-    
-//     // Call weather function with data (containing latitude, longitude)
-//     // Label property is not used by weather. Kept like this for clarity of code
-//     // weather() will destructure data to only use latitude and longitude
-//     weather(data, (error, forecast) => {
-//         if (error) { 
-//             return console.log('Error', error)
-//         }
-        
-//         // Display full location name
-//         console.log(data.label)
-
-//         // Display response string containing description and temperature values
-//         console.log(forecast)
-//     })
-// })
