@@ -1,5 +1,50 @@
+html {
+    max-width: 650px;
+}
+
 body {
     color: #333333;
+    font-family: arial;
+    margin: 0 auto;
+    padding: 0 16px;
+
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+h1 {
+    font-size: 64px;
+    margin-top: 16px;
+}
+
+header {
+    margin-top: 16px;
+    margin-bottom: 48px;
+}
+
+footer {
+    margin-top: auto;
+    color: #555555;
+    border-top: 1px solid #aaaaaa;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+}
+
+nav a {
+    text-decoration: none;
+    width: 33%;
+    text-align: center;
+    margin: 2px;
+    padding: 10px;
+    background-color: #dddddd;
 }
 
 .portrait {
