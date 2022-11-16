@@ -46,6 +46,20 @@ app.get('/contact', (req, res) => {
     })
 })
 
+app.get('/weather', (req, res) => {
+    if (!req.query.adress){
+        return res.send({
+            error: 'Must provide an adress'
+        })
+    }
+
+    res.send({
+        forecast: `All is fine in ${req.query.adress}`,
+        location: req.query.adress,
+        adress: req.query.adress
+    })
+})
+
 app.get('*', (req, res) => {
     res.render('404', {
         title: '404',
