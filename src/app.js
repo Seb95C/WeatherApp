@@ -1,15 +1,31 @@
+// Node core modules
+const path = require('node:path')
+
+// NPM modules
+
+// App modules
 const geocode = require('./utils/geocode')
 const weather = require('./utils/weather')
+
+// Path management
+const staticDirPath = path.join(__dirname, '../static')
 
 // Setting up Express server
 const express = require ('express')
 const app = express()
 const port = 3000
 
+// Configure static content
+app.use(express.static(staticDirPath))
+
+
+// Route Handelers 
 app.get('', (req, res) => {
     res.send('Hello Express!')
 })
 
+
+// Server start-up
 app.listen(port, () => {
     console.log(`Server is up on port ${port}`)
 })
