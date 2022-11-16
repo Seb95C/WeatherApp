@@ -2,6 +2,7 @@
 const path = require('node:path')
 
 // NPM modules
+//const hbs = require('hbs')
 
 // App modules
 const geocode = require('./utils/geocode')
@@ -9,6 +10,7 @@ const weather = require('./utils/weather')
 
 // Path management
 const staticDirPath = path.join(__dirname, '../static')
+const viewsPath = path.join(__dirname, '../templates/views')
 
 // Setting up Express server
 const express = require ('express')
@@ -18,10 +20,16 @@ const port = 3000
 // Configure static content
 app.use(express.static(staticDirPath))
 
+// Configure HBS View Engine
+app.set('view engine', 'hbs')
+app.set('views', viewsPath)
+
 
 // Route Handelers 
 app.get('', (req, res) => {
-    res.send('Hello Express!')
+    res.render('index', {
+        title: 'Weather'
+    })
 })
 
 
