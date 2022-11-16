@@ -46,25 +46,17 @@ app.get('/contact', (req, res) => {
     })
 })
 
-app.get('contact', (req, res) => {
-
+app.get('*', (req, res) => {
+    res.render('404', {
+        title: '404',
+        error: 'Page not found!'
+    })
 })
-
 
 // Server start-up
 app.listen(port, () => {
     console.log(`Server is up on port ${port}`)
 })
-
-// Deprecated! Location will be received via HTTP request
-//const location = process.argv[2]
-
-// Deprecated! Location will be checked inside the handler
-// If no valid adress is provided, the application will terminate execution
-// if (!location) {
-//     return console.log('Please add a location when running the application via command line arguments.\nExample: node src/app.js London')
-// }
-
 
 // Code is deactivated temporarely for the purpose of developing the Express server
 // geocode(location, (error, data) => {
