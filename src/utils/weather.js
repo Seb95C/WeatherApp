@@ -1,5 +1,4 @@
 const request = require('postman-request')
-const fs = require('fs')
 
 // Get API key from environmetn variable
 const key = process.env.WEATHERSTACKAPIKEY
