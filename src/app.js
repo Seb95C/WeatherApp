@@ -16,7 +16,7 @@ const partialsPath = path.join(__dirname, '../templates/partials')
 // Setting up Express server
 const express = require ('express')
 const app = express()
-const port = 3000
+const port = process.env.PORT
 
 // Configure static content
 app.use(express.static(staticDirPath))
