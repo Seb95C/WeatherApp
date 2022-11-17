@@ -33,6 +33,14 @@ footer {
     justify-content: space-around;
 }
 
+footer a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #555555;
+}
+
 nav {
     display: flex;
     flex-direction: row;
@@ -51,4 +59,17 @@ nav a {
 
 .portrait {
     width: 450px;
+}
+
+input {
+    border: 1px solid #cccccc;
+    padding: 8px;
+}
+
+button {
+    cursor: pointer;
+    border: 1px solid #888888;
+    background: #888888;
+    color: #fafafa;
+    padding: 8px;
 }
