@@ -3,7 +3,7 @@ const fs = require('fs')
 
 // Used to load private API key. The file containig the key is not included in the git repository for safety reasons.
 // Create account and get an API key at weatherstack.com. Create weatherstack.txt file in main folder and paste your key 
-const key = fs.readFileSync('weatherstack.txt').toString()
+const key = process.env.WEATHERSTACKAPIKEY
 
 // Destructure latitude and longitude data from the input object
 const weather = ({ latitude, longitude }, callback) => {
