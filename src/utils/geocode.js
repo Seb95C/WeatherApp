@@ -1,9 +1,6 @@
 const request = require('postman-request')
-const fs = require('fs')
 
-// Used to load private API key. The file containig the key is not included in the git repository for safety reasons.
-// Create account and get an API key at positionstack.com. Create positionstack.txt file in main folder and paste your key 
-//const key = fs.readFileSync('positionstack.txt').toString()
+// Get API key from environmetn variable
 const key = process.env.POSITIONSTACKAPIKEY
 
 const geocode = (adress, callback) => {
