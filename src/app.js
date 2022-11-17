@@ -55,7 +55,7 @@ app.get('/weather', (req, res) => {
 
     geocode(req.query.adress, (error, data) => {
         if (error) { 
-            return res.send(error)
+            return res.send({error})
         }
         
         // Call weather function with data (containing latitude, longitude)
@@ -63,7 +63,7 @@ app.get('/weather', (req, res) => {
         // weather() will destructure data to only use latitude and longitude
         weather(data, (error, forecast) => {
             if (error) { 
-                return res.send(error)
+                return res.send({error})
             }
             
             // Send response object containing all the important information
