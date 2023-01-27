@@ -5,7 +5,7 @@ const path = require('node:path')
 const hbs = require('hbs')
 
 // App modules
-const geocode = require('./utils/geocode')
+const { geocode, reverseGeocode } = require('./utils/geocode')
 const weather = require('./utils/weather')
 
 // Path management
@@ -70,6 +70,26 @@ app.get('/weather', (req, res) => {
             res.send({
                 adress: req.query.adress,
                 location: data.label,
+                forecast
+            })
+        })
+    })
+})
+
+app.get('/myweather', (req, res) => {
+
+    reverseGeocode(req.query, (error, { label }) => {
+        if (error) { 
+            return res.send({error})
+        }
+
+        weather(req.query, (error, forecast) => {
+            if (error) {
+                return res.send({error})
+            }
+
+            res.send({
+                location: label,
                 forecast
             })
         })

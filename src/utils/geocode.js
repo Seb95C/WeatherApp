@@ -35,4 +35,27 @@ const geocode = (adress, callback) => {
     })
 }
 
-module.exports = geocode
+const reverseGeocode = ({ latitude, longitude }, callback) => {
+    // Generate URL for API call
+    const url = `http://api.positionstack.com/v1/reverse?access_key=${key}&query=${latitude},${longitude}`
+
+    // Execute API call
+    request({ url, json: true }, (error, { body }) => {
+        if (error) {
+            return callback('Failed to connect to positionstack.com API', undefined)
+        }
+
+        if (body.error || body.data[0].length === 0) {
+            return callback('Unable to find location! Try again!', undefined)
+        }
+
+        callback(undefined, {
+            label: body.data[0].label
+        })
+    })
+}
+
+module.exports = {
+    geocode,
+    reverseGeocode
+}

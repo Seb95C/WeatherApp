@@ -73,3 +73,8 @@ button {
     color: #fafafa;
     padding: 8px;
 }
+
+#form-div {
+    display: flex;
+    gap: 4px;
+}
