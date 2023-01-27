@@ -31,10 +31,8 @@ myWeatherButton.addEventListener('click', (e) => {
     message2.textContent = ''
 
     if (!navigator.geolocation) {
-        alert('Geolocation not supported by your browser!')
+        return alert('Geolocation not supported by your browser!')
     }
-
-    console.log(navigator.geolocation)
 
     navigator.geolocation.getCurrentPosition((position) => {
         const coords = {

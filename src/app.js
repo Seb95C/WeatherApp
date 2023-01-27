@@ -16,7 +16,7 @@ const partialsPath = path.join(__dirname, '../templates/partials')
 // Setting up Express server
 const express = require ('express')
 const app = express()
-const port = process.env.PORT
+const port = process.env.PORT || 3000
 
 // Configure static content
 app.use(express.static(staticDirPath))
@@ -78,7 +78,7 @@ app.get('/weather', (req, res) => {
 
 app.get('/myweather', (req, res) => {
 
-    reverseGeocode(req.query, (error, { label }) => {
+    reverseGeocode(req.query, (error, data) => {
         if (error) { 
             return res.send({error})
         }
@@ -89,7 +89,7 @@ app.get('/myweather', (req, res) => {
             }
 
             res.send({
-                location: label,
+                location: data.label,
                 forecast
             })
         })
